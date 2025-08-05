@@ -19,7 +19,7 @@ export class AuthController {
         const user = req.user
         try {
             delete user.password
-            const token = jwt.sign({_id: user._id,email:user.email}, config.TOKEN_JWT,{expiresIn: 60 * 60 })
+            const token = jwt.sign({_id: user._id,email:user.email,role:user.role}, config.TOKEN_JWT,{expiresIn: 60 * 60 })
             res.cookie('jwt', token, {httpOnly: true})
             res.json({status:'success',payload:user})
         } catch (error) {

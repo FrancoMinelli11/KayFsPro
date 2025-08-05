@@ -4,7 +4,6 @@ export class ProductController {
     static async createProduct(req, res){
         const { title, description, price,code, stock, category } = req.body
         const thumbnail = req.file.filename
-        console.log(req.file)
         try {
             if (!title || !description || !price || !thumbnail || !code || !stock || !category) {
                 return res.status(400).json({ message: 'All fields are required' });
