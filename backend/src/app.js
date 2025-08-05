@@ -4,6 +4,7 @@ import mongoose from 'mongoose'
 import { router as userRouter} from './routes/user.router.js'
 import {router as authRouter} from './routes/auth.router.js'
 import { router as productRouter } from './routes/product.router.js';
+import { router as cartRouter } from './routes/cart.router.js'
 import passport from 'passport'
 import cookieParser from 'cookie-parser'
 import { initializePassport } from './config/passport.config.js'
@@ -34,3 +35,4 @@ connect();
 app.use('/user', userRouter)
 app.use('/auth', authRouter)
 app.use('/product', productRouter)
+app.use('/cart', cartRouter )
