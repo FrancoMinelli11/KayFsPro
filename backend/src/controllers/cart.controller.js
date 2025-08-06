@@ -1,25 +1,24 @@
-import { cartModel } from "../dao/models/cart.model.js";
-
+import {CartDao} from "../dao/cart.dao.js"
 export class CartController {
     static async getCart(req, res) {
         try {
-            const cart = await cartModel.findOne({ user: req.user._id });
+            const cart = await CartDao.get(req.user._id)
             if (!cart) {
-                return res.status(404).json({ message: 'Cart not found' });
+                return res.status(404).json({ message: 'Cart not found' })
             }
-            res.status(200).json(cart);
+            res.status(200).json(cart)
         } catch (error) {
-            res.status(500).json({ message: 'Error retrieving cart', error });
+            res.status(500).json({ message: 'Error retrieving cart', error })
         }
     }
 
     static async addToCart(req, res) {
-        const { productId, quantity } = req.body;
+        const { productId, quantity } = req.body
         try {
             if (!productId || !quantity) {
                 return res.status(400).json({ message: 'Product ID and quantity are required' })
             }
-            const cart = await cartModel.findOne({ user: req.user._id })
+            const cart = await CartDao.put(req.user._id)
             if (!cart) {
                 return res.status(404).json({ message: 'Cart not found' })
             }
