@@ -18,20 +18,38 @@ export class CartController {
             if (!productId || !quantity) {
                 return res.status(400).json({ message: 'Product ID and quantity are required' })
             }
-            const cart = await CartDao.put(req.user._id)
+            const cart = await CartDao.put(req.user._id, productId, quantity)
             if (!cart) {
                 return res.status(404).json({ message: 'Cart not found' })
             }
-            const productIndex = cart.products.findIndex(p => p.product._id.toString() === productId.toString())
-            if (productIndex > -1) {
-                cart.products[productIndex].quantity += quantity
-            } else {
-                cart.products.push({ product: productId, quantity })
-            }
-            await cart.save()
             res.status(200).json(cart)
         } catch (error) {
             res.status(500).json({ message: 'Error adding to cart', error })
+        }
+    }
+
+    static async deleteProduct(req, res) {
+        const { productId } = req.params
+        try {
+            const cart = await CartDao.deleteProduct(req.user._id, productId)
+            if (!cart) {
+                return res.status(404).json({ message: 'Cart not found' })
+            }
+            res.status(200).json(cart)
+        } catch (error) {
+            res.status(500).json({ message: 'Error deleting product from cart', error })
+        }
+    }
+
+    static async clearCart(req, res) {
+        try {
+            const cart = await CartDao.clearCart(req.user._id)
+            if (!cart) {
+                return res.status(404).json({ message: 'Cart not found' })
+            }
+            res.status(200).json(cart)
+        } catch (error) {
+            res.status(500).json({ message: 'Error clearing cart', error })
         }
     }
 }
