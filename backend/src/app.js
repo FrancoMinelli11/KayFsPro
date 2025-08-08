@@ -8,12 +8,13 @@ import { router as cartRouter } from './routes/cart.router.js'
 import passport from 'passport'
 import cookieParser from 'cookie-parser'
 import { initializePassport } from './config/passport.config.js'
+import  __dirname  from './utilRoute.js'
 
 const app = express()
 const port = config.PORT
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
-app.use(express.static('backend/src/public'))
+app.use(express.static(`${__dirname}/public`))
 initializePassport()
 app.use(passport.initialize())
 app.use(cookieParser())
@@ -30,7 +31,7 @@ const connect = async () => {
         console.log(error)
     }
 }
-connect();
+connect()
 
 app.use('/user', userRouter)
 app.use('/auth', authRouter)
