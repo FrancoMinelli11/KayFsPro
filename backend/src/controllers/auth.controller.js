@@ -26,4 +26,13 @@ export class AuthController {
             res.status(500).json({status:'error',message:error.message})
         }
     }
+
+    static async logout(req, res) {
+        try {
+            res.clearCookie('jwt')
+            res.json({status: 'success', message: 'Logged out successfully'})
+        } catch (error) {
+            res.status(500).json({status: 'error', message: error.message})
+        }
+    }
 }
