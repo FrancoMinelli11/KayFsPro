@@ -9,6 +9,7 @@ import passport from 'passport'
 import cookieParser from 'cookie-parser'
 import { initializePassport } from './config/passport.config.js'
 import  __dirname  from './utilRoute.js'
+import cors from 'cors'
 
 const app = express()
 const port = config.PORT
@@ -18,6 +19,7 @@ app.use(express.static(`${__dirname}/public`))
 initializePassport()
 app.use(passport.initialize())
 app.use(cookieParser())
+app.use(cors())
 const connect = async () => {
     try {
         await mongoose.connect(config.MONGO,{

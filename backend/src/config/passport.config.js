@@ -23,21 +23,6 @@ export const initializePassport = () => {
         async (req, username, password, done) => {
             try {
                 const { first_name, last_name } = req.body
-                if (!first_name || !last_name || !username || !password) {
-                    return done(null, false, { message: 'All fields are required' })
-                }
-                if (password.length < 6) {
-                    return done(null, false, { message: 'Password must be at least 6 characters long' })
-                }
-                if (!/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/.test(username)) {
-                    return done(null, false, { message: 'Invalid email format' })
-                }
-                if (!/^[a-zA-Z]+$/.test(first_name) || !/^[a-zA-Z]+$/.test(last_name)) {
-                    return done(null, false, { message: 'First name and last name must contain only letters' })
-                }
-                if (first_name.length < 3 || last_name.length < 3) {
-                    return done(null, false, { message: 'First name and last name must be at least 3 characters long' })
-                }
                 let user = await UserDao.getBy({ email: username })
                 if (user) {
                     return done(null, false, { message: 'User already exists' })
