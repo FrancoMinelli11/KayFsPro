@@ -1,6 +1,7 @@
 export async function getProducts (limit,skip){
     try {
-        const response = await fetch(`https://dummyjson.com/products?limit=${limit}&skip=${skip}`);
+        const response = await fetch(`http://localhost:8080/product`);
+        console.log(limit, skip)
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
@@ -14,7 +15,7 @@ export async function getProducts (limit,skip){
 
 export async function getProductById (id) {
     try {
-        const response = await fetch(`https://dummyjson.com/products/${id}`)
+        const response = await fetch(`http://localhost:8080/product/${id}`)
         if(!response.ok){
             throw new Error("Network response was not ok")
         }

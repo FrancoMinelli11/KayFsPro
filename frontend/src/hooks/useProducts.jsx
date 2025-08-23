@@ -6,7 +6,8 @@ export const useProducts = () => {
     useEffect(() => {
         getProducts(0, 10)
             .then((data) => {
-                setProductsD(data.products)
+                console.log(data)
+                setProductsD(data)
                 setLoading(false)
             })
             .catch((error) => {
