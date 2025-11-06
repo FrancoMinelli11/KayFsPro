@@ -6,7 +6,7 @@ export class AuthDao {
             if (!newUser) {
                 throw new Error('User creation failed')
             }
-            newUser.password = undefined // Remove password from the response
+            newUser.password = undefined 
             return newUser
         } catch (error) {
             throw new Error('Error creating user: ' + error.message)

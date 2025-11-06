@@ -6,8 +6,7 @@ export const useProductsByCategory = (cat) => {
     useEffect(() => {
         getProductsByCategory(cat)
         .then((data) => {
-            console.log(data)
-            setProducts(data.products)
+            setProducts(data)
         }).catch((error) => {
             console.log(error)
         })

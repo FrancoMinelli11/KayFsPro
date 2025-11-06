@@ -19,7 +19,10 @@ app.use(express.static(`${__dirname}/public`))
 initializePassport()
 app.use(passport.initialize())
 app.use(cookieParser())
-app.use(cors())
+app.use(cors({
+    origin: 'http://localhost:5173',
+    credentials: true,
+}))
 const connect = async () => {
     try {
         await mongoose.connect(config.MONGO,{
