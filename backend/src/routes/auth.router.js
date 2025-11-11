@@ -9,15 +9,15 @@ export const router = Router()
 router.post('/register',[
         body('email')
             .isEmail()
-            .withMessage('Formato de email inválido'),
+            .withMessage('Invalid email format'),
         body('password')
             .isLength({ min: 6 })
-            .withMessage('La contraseña debe tener al menos 6 caracteres'),
+            .withMessage('the password must be at least 6 characters long'),
         body('first_name')
             .isLength({ min: 3, max: 20 })
-            .withMessage("El nombre debe tener entre 3 y 20 caracteres")
+            .withMessage("The name must be between 3 and 20 characters")
             .matches(/^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+$/)
-            .withMessage("El nombre solo puede contener letras y espacios"),
+            .withMessage("The name can only contain letters and spaces"),
             validateFields,
             registerMiddleware
 ], AuthController.register)
@@ -25,10 +25,10 @@ router.post('/register',[
 router.post('/login',[
     body('email')
         .isEmail()
-        .withMessage('Formato de email inválido'),
+        .withMessage('Invalid credentials'),
     body('password')
         .isLength({ min: 6 })
-        .withMessage('La contraseña debe tener al menos 6 caracteres'),
+        .withMessage('Invalid credentials'),
     validateFields,
     loginMiddleware
 ], AuthController.login)

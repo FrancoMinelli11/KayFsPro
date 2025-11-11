@@ -4,4 +4,4 @@ import passport from "passport";
 
 export const router = Router()
 
-router.get('/', passport.authenticate('current', { session: false }), UserController.getAllUsers)
+router.get('/current', passport.authenticate('current', { session: false }), UserController.current)

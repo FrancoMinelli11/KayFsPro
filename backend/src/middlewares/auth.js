@@ -34,13 +34,10 @@ export const validateFields = (req, res, next) => {
 
     if (!errors.isEmpty()) {
         return res.status(400).json({
-            ok: false,
-            errors: errors.array().map(err => ({
-                field: err.path,
-                msg: err.msg,
-            })),
+            status: 'error',
+            message: errors.array().map(err => err.msg).join(', ')
         })
     }
 
     next()
-}
+} 

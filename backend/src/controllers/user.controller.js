@@ -1,10 +1,8 @@
-import { userModel } from "../dao/models/user.model.js";
-import { UserDao } from "../dao/user.dao.js";
+
 export class UserController {
-    static async getAllUsers(req, res) {
+    static async current(req, res) {
         try {
-            const users = await UserDao.get()
-            res.json({ status: 'success', payload: users });
+            res.json({ status: "success", payload: req.user })
         } catch (error) {
             res.status(500).json({ status: 'error', message: error.message });
         }
