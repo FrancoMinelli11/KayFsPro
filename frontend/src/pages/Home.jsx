@@ -1,5 +1,3 @@
-import { Login } from "./Login"
-
 
 export const Home = () => {
 return (
@@ -7,7 +5,6 @@ return (
         <h1 className="font-bold text-4xl mb-2.5">Estas en la página de Inicio</h1>
         <p className="text-lg">Bienvenido a nuestra tienda en línea.</p>
         <p className="text-lg">Aquí encontrarás una variedad de productos para explorar.</p>
-        <Login />
     </div>
     )
 }

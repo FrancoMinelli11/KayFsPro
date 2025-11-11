@@ -21,7 +21,6 @@ export const MainRouter = () => {
                 <Route path='/category/:name' element={<ProductsByCategory/>} />
                 <Route path='/search/tuki' element={<ProductsByName/>} />
                 <Route path='*' element={<h1 className='text-3xl font-bold text-center mt-10'>404 - Not Found</h1>} />
-                <Route path='/login' element={<Login />} />
             </Routes>
             <Footer />
         </BrowserRouter>

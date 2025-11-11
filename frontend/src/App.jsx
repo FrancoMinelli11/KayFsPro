@@ -1,10 +1,14 @@
+
+import { AuthProvider } from "./context/authContext"
 import { MainLayout } from "./layouts/MainLayout"
 import { MainRouter } from "./router/MainRouter"
 
 export const App = () => {
   return (
     <MainLayout>
-      <MainRouter />
+        <AuthProvider>
+          <MainRouter />
+        </AuthProvider>
     </MainLayout>
   )
 }

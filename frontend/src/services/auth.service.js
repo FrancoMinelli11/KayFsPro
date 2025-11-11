@@ -27,7 +27,6 @@ export async function login(email, password) {
         })
         const data = await res.json()
         if (!res.ok) throw new Error(data.message || "Error en el login")
-            console.log(data)
         return { data, error: null }
     } catch (error) {
         return { data: null, error: error.message }
@@ -64,5 +63,20 @@ export async function logout() {
         return { data, error: null }
     } catch (error) {
         return { data: null, error: error.message || "Error desconocido" }
+    }
+}
+
+export async function getCurrentUser() {
+    try {
+        const res = await fetch(`${API_URL}/user/current`, {
+            method: "GET",
+            headers: { "Content-Type": "application/json" },
+            credentials: "include",
+        })
+        const data = await res.json()
+        if (!res.ok) throw new Error(data.message || "Error al obtener el usuario actual")
+        return { data, error: null }
+    } catch (error) {
+        return { data: null, error: error.message }
     }
 }
