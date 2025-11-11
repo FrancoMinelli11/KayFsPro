@@ -7,10 +7,10 @@ export const useProductsByName = () => {
   useEffect(() => {
     findProductByName(word)
     .then((data) => {
-        console.log(data)
+        (data)
         setProducts(data.products)
     }).catch((error) => {
-        console.log(error)
+        (error)
     })
     }, [word])
 

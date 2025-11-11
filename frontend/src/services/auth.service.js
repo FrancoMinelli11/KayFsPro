@@ -10,7 +10,6 @@ export async function register(first_name, last_name, email, password) {
         })
         const data = await res.json()
         if (!res.ok) throw new Error(data.message || "Error en el registro")
-            console.log(data)
         return { data, error: null }
     } catch (error) {
         return { data: null, error: error.message }
@@ -73,6 +72,12 @@ export async function getCurrentUser() {
             headers: { "Content-Type": "application/json" },
             credentials: "include",
         })
+        const contentType = res.headers.get("content-type")
+        if (!contentType || !contentType.includes("application/json")) {
+        const text = await res.text()
+            throw new Error(`Respuesta inesperada del servidor: ${text}`)
+}
+
         const data = await res.json()
         if (!res.ok) throw new Error(data.message || "Error al obtener el usuario actual")
         return { data, error: null }

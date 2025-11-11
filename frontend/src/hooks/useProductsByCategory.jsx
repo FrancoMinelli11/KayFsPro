@@ -8,7 +8,7 @@ export const useProductsByCategory = (cat) => {
         .then((data) => {
             setProducts(data)
         }).catch((error) => {
-            console.log(error)
+            (error)
         })
     },[cat])
     return{products}

@@ -7,7 +7,6 @@ import { ProductsByCategory } from '../pages/ProductsByCategory'
 import { NavBar } from '../components/NavBar'
 import { ProductsByName } from '../pages/ProductsByName'
 import { Footer } from '../components/Footer'
-import { Login } from '../pages/Login'
 
 export const MainRouter = () => {
     return (

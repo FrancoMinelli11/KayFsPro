@@ -1,6 +1,6 @@
 import { Link } from "react-router"
 import { IconHome, IconLogin, IconLogin2, IconShoppingCart } from "@tabler/icons-react"
-import { Login } from "../pages/Login"
+import { Login } from "../components/Login"
 
 export const NavBar = () => {
   return (

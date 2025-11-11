@@ -6,6 +6,15 @@ import { IconLogin, IconLogin2 } from "@tabler/icons-react"
 export const Login = () => {
   const {loginUser, user,error,logoutUser} = useContext(AuthContext)
   const handleClick = async () => {
+    if (user) {
+        await Swal.fire({
+        title: "Sesión cerrada",
+        text: "Has cerrado sesión correctamente.",
+        icon: "success",
+      })
+      await logoutUser()
+      return
+    }
     const { value: formValues } = await Swal.fire({
       title: "Iniciar sesión",
       html: `
@@ -39,7 +48,7 @@ export const Login = () => {
   }, [user])
   return (
     <div>
-      {user ? <button onClick={logoutUser} className="text-gray-300 hover:text-white"><IconLogin2 stroke={1}/></button>:<button onClick={handleClick} className="text-gray-300 hover:text-white"><IconLogin stroke={1}/></button>}
+      {user ? <button onClick={handleClick} className="text-gray-300 hover:text-white"><IconLogin2 stroke={1}/></button>:<button onClick={handleClick} className="text-gray-300 hover:text-white"><IconLogin stroke={1}/></button>}
     </div>
   )
 }

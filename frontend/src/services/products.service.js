@@ -12,15 +12,14 @@ function getCats(arr){
 export async function getProducts (limit,skip){
     try {
         const response = await fetch(`http://localhost:8080/product`);
-        console.log(limit, skip)
+        (limit, skip)
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
         const data = await response.json();
         return data;
     } catch (error) {
-        console.error('Error fetching products:', error);
-        throw error;
+        throw new Error(error.message || "Error fetching products");
     }
 }
 
@@ -33,7 +32,7 @@ export async function getProductById (id) {
         const data = await response.json()
         return data
     } catch (error) {
-        console.log(error)
+        throw new Error(error)
     }
 }
 
@@ -47,7 +46,7 @@ export async function getAllCategories(){
         const categories = getCats(data)
         return categories
     } catch (error) {
-        console.log(error)
+        throw new Error(error)
     }
 }
 
@@ -58,7 +57,7 @@ export async function getProductsByCategory(cat){
         const filtered = data.filter((product) => product.category === cat)
         return filtered
     } catch (error) {
-        console.log(error)
+        throw new Error(error)
     }
 }
 
@@ -68,7 +67,7 @@ export async function findProductByName(word){
         const data = await response.json()
         return data
     } catch (error) {
-        console.log(error)
+        throw new Error(error)
     }
 }
 
